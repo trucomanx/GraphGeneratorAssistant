@@ -20,6 +20,7 @@ arrow_color = "gray"  # arrow color
 arrow_thick = 8       # arrow line thickness
 arrow_scale = 20      # arrow head scale
 
+output_filepath = "circular_diagram1.pdf"
 
 
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -91,7 +92,9 @@ else:
     plt.ylim(-R, R)
     
 plt.tight_layout(pad=0.5)  
-plt.savefig("latex_workflow1.pdf", bbox_inches='tight', pad_inches=0.1, dpi=600)
-#plt.savefig("latex_workflow1.png", dpi=600)
-#plt.savefig("latex_workflow1.eps", bbox_inches='tight')
+plt.savefig(output_filepath, bbox_inches='tight', pad_inches=0.1, dpi=600)
+#plt.savefig("circular_diagram1.pdf", bbox_inches='tight', pad_inches=0.1, dpi=600)
+#plt.savefig("circular_diagram1.png", dpi=600)
+#plt.savefig("circular_diagram1.eps", bbox_inches='tight', pad_inches=0.1)
+
 
