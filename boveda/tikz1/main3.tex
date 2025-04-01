@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{mindmap}
+
+\begin{document}
+\begin{tikzpicture}[
+    mindmap,
+    concept color=blue!20,
+    nodes={concept, scale=0.7},
+    grow cyclic,
+    level 1/.append style={level distance=4cm, sibling angle=90},
+    level 2/.append style={level distance=3cm}
+]
+\node {LaTeX} 
+    child { node {Editores} 
+        child { node {TeXstudio} }
+        child { node {Overleaf} }
+    }
+    child { node {Diagramas}
+        child { node {TikZ} }
+        child { node {PGFPlots} }
+    };
+\end{tikzpicture}
+\end{document}

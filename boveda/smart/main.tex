@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{smartdiagram}
+\usepackage{xcolor}
+\definecolor{myblue}{RGB}{50,100,200}
+\definecolor{mygreen}{RGB}{50,150,100}
+
+\begin{document}
+
+\section*{Ejemplos completos de smartdiagram (versión corregida)}
+
+
+\smartdiagramset{
+uniform color list=gray!60!black for 1 items,
+back arrow disabled=true,
+}
+
+\smartdiagram[flow diagram:horizontal]{PGF,Ti\textit{k}Z,Smartdiagram}
+
+
+
+\smartdiagram[sequence diagram]{PGF,Ti\textit{k}Z,Smartdiagram}
+
+
+
+\smartdiagram[constellation diagram]{Cloud Types, Stratus Clouds,  
+  Cumulus Clouds, Nimbus Clouds, Cirrus Clouds} 
+
+
+ \smartdiagram[bubble diagram]{ Passive Components, Inductors, Capacitors, Resistors, Transformers}  
+
+ 
+ \smartdiagram[descriptive diagram]{  
+ {Beam,{ It is defined as a long piece of timber or metal, which is used as a support in building}},  
+ {Daffodil, {It is a plant having yellow flowers with a trumpet-shaped center.}},  
+ {Galaxy, {It is defined as a system consisting of millions or billions of stars}},  
+ {Legislature, {It is defined as a law-making body of a state.}},  
+ {Pane, {It is defined as a single sheet of glass in a window or a door}},  
+ }  
+ 
+ 
+ 
+\begin{figure}[!ht]
+\centering
+\smartdiagramset{
+  uniform color list=myblue!60 for 5 items,
+  arrow color=myblue!80,
+  border color=myblue
+}
+\smartdiagram[circular diagram]{
+  Planejamento,
+  Desenvolvimento,
+  Testes,
+  Implanta\c{c}\~ao,
+  Manuten\c{c}\~ao
+}
+\caption{Diagrama Circular}
+\label{fig:circular}
+\end{figure}
+
+
+
+
+\begin{figure}[!ht]
+\centering
+\smartdiagramset{
+  uniform arrow color=true,
+  arrow color=mygreen,
+  arrow line width=2pt,
+  uniform color list=mygreen!30 for 6 items
+}
+
+\smartdiagram[flow diagram:vertical]{
+  In\'icio,
+  An\'alise de Requisitos,
+  Projeto,
+  Codifica\c{c}\~ao,
+  Testes Unit\'arios,
+  Implanta\c{c}\~ao
+}
+\caption{Diagrama de Fluxo Vertical}
+\label{fig:flow}
+\end{figure}
+
+
+
+
+\begin{figure}[!ht]
+\centering
+\smartdiagramset{
+  uniform arrow color=true,
+  arrow color=mygreen,
+  arrow line width=2pt,
+  uniform color list=mygreen!30 for 6 items
+}
+\smartdiagram[flow diagram:horizontal]{
+  In\'icio,
+  An\'alise de Requisitos,
+  Projeto,
+  Codifica\c{c}\~ao,
+  Testes Unit\'arios,
+  Implanta\c{c}\~ao
+}
+\caption{Diagrama de Fluxo Horizontal}
+\label{fig:flow}
+\end{figure}
+
+
+
+
+
+\begin{figure}[!ht]
+\centering
+\smartdiagramset{
+  descriptive items y sep=50pt,
+  description title width=2.5cm,
+  uniform color list=orange!40 for 3 items
+}
+\smartdiagram[priority descriptive diagram]{
+  {Cr\'itico\\,{Definir funcionalidades\\ essenciais do sistema}},
+  {Importante\\,{Features que agregam\\ valor significativo}},
+  {Desej\'avel\\,{Melhorias para vers\~oes\\ futuras}}
+}
+\caption{Diagrama de Prioridades}
+\label{fig:priority}
+\end{figure}
+
+
+
+
+\end{document}

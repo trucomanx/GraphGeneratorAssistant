@@ -1,0 +1,6 @@
+/src/graph_generator_assistant/modules/__pycache__/
+/boveda/*/*.synctex.gz
+/boveda/*/*.aux
+/boveda/*/*.log
+/boveda/*/*.pdf
+/boveda/*.pdf

@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{forest}
+
+\begin{document}
+\begin{forest}
+  for tree={
+    draw,
+    align=center,
+    edge={->},
+    l sep=1cm,
+    s sep=0.5cm
+  }
+  [CEO
+    [CTO
+      [Dev\\Front-end]
+      [Dev\\Back-end]
+    ]
+    [CFO
+      [Contabilidade]
+      [RH]
+    ]
+  ]
+\end{forest}
+
+
+
+\begin{forest}
+for tree={
+      circle, 
+      minimum size=2cm, 
+      edge={red, line width=1mm, shorten <=1pt, shorten >=1pt, ->}
+      }
+[Build a program, fill=red!30
+  [Set up,fill=blue!30]
+  [Run, fill=green!30]
+  [Analyze,fill=violet!30]
+]
+\end{forest}
+
+
+\end{document}
