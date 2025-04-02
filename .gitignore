@@ -4,3 +4,5 @@
 /boveda/*/*.log
 /boveda/*/*.pdf
 /boveda/*.pdf
+/src/graph_generator_assistant/__pycache__/
+/src/graph_generator_assistant/templates/__pycache__/
