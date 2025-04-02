@@ -3,7 +3,7 @@
 data = {
     "comparison": {
         "bar-chart": {
-            "vertical": ["vbar1", "vbar2"],
+            "vertical": ["vertical_barchart1"],
             "horizontal": ["horizontal_barchart1"],
             "clustered": ["cbar1", "cbar2"],
             "stacked": ["ebar1", "ebar2"]
