@@ -32,7 +32,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "PyQt5",
-        'deep-translator'
+        "deep-consultation",
+        "matplotlib",
+        "networkx"
     ],
     entry_points={
         'console_scripts': [

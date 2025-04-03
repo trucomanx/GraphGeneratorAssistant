@@ -23,8 +23,11 @@ data = {
     },
     "relation": {
         "scatter-plot": ["scatter1", "scatter2"],
-        "correlation-plot": ["corr1", "corr2"],
-        "network-diagram": ["net1", "net2"]
+        "network-diagram": ["radial_network_diagram1", "radial_network_diagram2", "radial_network_diagram3"],
+        "matrix-plots": {
+            "correlation-matrix": ["corr1", "corr2"],
+            "confusion-matrix": ["confusion_matrix1"]
+        }
     },
     "process": {
         "cyclic-diagram": ["circular_diagram1"],

@@ -14,11 +14,11 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer, QUrl
 from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices
 
-from modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
-from modules.lib_execute import generate_data, save_data
-from modules.lib_files   import open_from_filepath
-from modules.lib_funcs   import consultation_in_depth, extrair_codigo_puro
-import about
+from graph_generator_assistant.modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
+from graph_generator_assistant.modules.lib_execute import generate_data, save_data
+from graph_generator_assistant.modules.lib_files   import open_from_filepath
+from graph_generator_assistant.modules.lib_funcs   import consultation_in_depth, extrair_codigo_puro
+import graph_generator_assistant.about as about
 
 program_dir_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -35,6 +35,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle(about.__program_name__)
         self.setGeometry(100, 100, 800, 600)
+        
+        ## Icon
+        # Get base directory for icons
+        base_dir_path = os.path.dirname(os.path.abspath(__file__))
+        icon_path = os.path.join(base_dir_path, 'icons', 'logo.png')
+        self.setWindowIcon(QIcon(icon_path)) 
         
         ## toolbar
         self.toolbar = QToolBar("Toolbar")
@@ -125,6 +131,7 @@ class MainWindow(QMainWindow):
     
     #############################
     def on_tree_item_clicked(self, item):
+        self.tabs.setCurrentIndex(0)
         leaves = []
         self.collect_leaves(item, leaves)
         
@@ -180,7 +187,7 @@ class MainWindow(QMainWindow):
         for idx, img in enumerate(images):
             pixmap = QPixmap(img)
             label = QLabel()
-            label.setPixmap(pixmap.scaled(256, 256, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            label.setPixmap(pixmap.scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation))
             label.mouseDoubleClickEvent = lambda event, img=img: self.image_grid_clicked(img)
             
             json_path = os.path.splitext(img)[0]+".json"

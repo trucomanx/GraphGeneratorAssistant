@@ -1,4 +1,4 @@
 {
     "title": "horizontal barchart",
-    "description": "The texts is called **ytitles** e the values **xvalues**."
+    "description": "The input is a list of text strings called **ytitles** and a list of numerical values called **xvalues**."
 }
