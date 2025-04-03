@@ -13,7 +13,7 @@ def load_image(path):
 
 def network_graph1( network_dict = {
                         "icons": {
-                            "router": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Router_symbol-Blue.svg/480px-Router_symbol-Blue.svg.png",
+                            "router": "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/router.png?raw=true",
                             "switch": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Router_symbol-Blue.svg/480px-Router_symbol-Blue.svg.png",
                             "PC":     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Router_symbol-Blue.svg/480px-Router_symbol-Blue.svg.png"
                         },
