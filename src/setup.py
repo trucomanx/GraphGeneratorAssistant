@@ -35,7 +35,9 @@ setup(
         "deep-consultation",
         "matplotlib",
         "networkx",
-        "numpy"
+        "numpy",
+        "scikit-learn",
+        "pillow"
     ],
     entry_points={
         'console_scripts': [

@@ -38,7 +38,7 @@ data = {
     },
     "process": {
         "cyclic-diagram": ["circular_diagram1"],
-        "flowchart": ["workflow_diagram1"],
+        "flowchart": ["workflow_diagram1","workflow_simple1"],
         "gantt": ["gantt1", "gantt2"],
         "bpmn": ["bpmn1", "bpmn2"]
     },

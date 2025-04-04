@@ -62,6 +62,11 @@ class MainWindow(QMainWindow):
         configure_action.triggered.connect(lambda: open_from_filepath(config_file_path))
         self.toolbar.addAction(configure_action)
         
+        webpal_action = QAction("Web palletes", self)
+        webpal_action.setIcon(QIcon.fromTheme("emblem-web"))
+        webpal_action.triggered.connect(self.open_url_webpal)
+        self.toolbar.addAction(webpal_action)
+        
         ## treeview
         self.tree = QTreeWidget()
         self.tree.setHeaderHidden(True)
@@ -94,6 +99,9 @@ class MainWindow(QMainWindow):
         self.load_config_data_from_json()
         
 
+    def open_url_webpal(self):
+        self.status_bar.showMessage("Opening Pinterest")
+        QDesktopServices.openUrl(QUrl("https://pinterest.com/search/pins/?q=color palette design colour schemes"))
     
     #############################
     def load_config_data_from_json(self):
