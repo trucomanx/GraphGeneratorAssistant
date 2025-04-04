@@ -7,7 +7,7 @@ import numpy as np
 
 
 def circular_diagram1(  labels = ["Edit", "pdfLaTeX", "BibTeX", "make\nindex", "pdfLaTeX"],
-                        colors = ["red", "green", "#2222AA", "yellow", "gray"], # plt.cm.tab10.colors
+                        colors = ["#4a596c", "#8e6434", "#df7706", "#a63410", "#721b00"], # plt.cm.tab10.colors
                         element_alpha   = 1.0, 
                         element_radius  = 0.045, 
                         proccess_radius = 0.100, 

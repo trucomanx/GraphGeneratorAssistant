@@ -6,10 +6,10 @@ import numpy as np
 
 
 def radial_network_diagram3(central_label = "Writer",
-                            central_color = "#22AAAA",
+                            central_color = "#e7c794",
                             central_radius  = 0.065, 
                             labels = ["Edit", "pdfLaTeX", "BibTeX", "make\nindex", "pdfLaTeX"], # 
-                            colors = ["red", "green", "#2222AA", "yellow", "gray"], # plt.cm.tab10.colors
+                            colors = ["#dc8d6c", "#676e5e", "#97a884", "#cdd6a9", "#e6e7d5"], # plt.cm.tab10.colors
                             element_alpha   = 1.0, 
                             element_radius  = 0.065, 
                             proccess_radius = 0.150, 

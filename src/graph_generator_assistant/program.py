@@ -363,7 +363,7 @@ class MainWindow(QMainWindow):
         self.details_splitter.addWidget(scroll_area)
         self.details_splitter.addWidget(container_layout_widget)
         self.details_splitter.addWidget(self.markdown_widget)
-        self.details_splitter.setSizes([500, 150, 50])
+        self.details_splitter.setSizes([400, 150, 150])
 
         # Temporizador (timer)
         self.timer = QTimer()

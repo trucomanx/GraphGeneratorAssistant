@@ -1,44 +1,48 @@
+#!/usr/bin/python3
+
 import matplotlib.pyplot as plt
 import networkx as nx
-import PIL.Image
+from PIL import Image
 import requests
 from io import BytesIO
 
 def load_image(path):
-    """Carrega a imagem de um caminho local ou URL."""
-    if path.startswith("http"):
-        response = requests.get(path)
-        return PIL.Image.open(BytesIO(response.content))
-    return PIL.Image.open(path)
+    """Carrega a imagem de um caminho local ou URL.
+    Se não for possível carregar, retorna uma imagem vazia com fundo branco.
+    """
+    try:
+        if path.startswith("http"):
+            response = requests.get(path, timeout=5)
+            response.raise_for_status()
+            return Image.open(BytesIO(response.content))
+        return Image.open(path)
+    except Exception:
+        return Image.new("RGB", (100, 100), "red")
 
 def network_graph1( network_dict = {
                         "icons": {
                             "router": "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/router.png?raw=true",
-                            "switch": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Router_symbol-Blue.svg/480px-Router_symbol-Blue.svg.png",
-                            "PC":     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Router_symbol-Blue.svg/480px-Router_symbol-Blue.svg.png"
+                            "switch": "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/switch.png?raw=true",
+                            "PC":     "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/pc.png?raw=true"
                         },
                         "nodes": {
                             "router": "router",
                             "switch_1": "switch",
                             "switch_2": "switch",
-                            "switch_3": "switch",
                             "PC_1_1": "PC",
                             "PC_1_2": "PC",
                             "PC_1_3": "PC",
                             "PC_2_1": "PC",
-                            "PC_2_2": "PC",
-                            "PC_3_1": "PC"
+                            "PC_2_2": "PC"
                         },
                         "edges": [
                             ("router", "switch_1"),
                             ("router", "switch_2"),
-                            ("router", "switch_3"),
                             ("switch_1", "PC_1_1"), 
                             ("switch_1", "PC_1_2"), 
                             ("switch_1", "PC_1_3"),
                             ("switch_2", "PC_2_1"), 
-                            ("switch_2", "PC_2_2"),
-                            ("switch_3", "PC_3_1")
+                            ("switch_2", "PC_2_2")
                         ]
                     },
                     output_filepath = "network_graph1.pdf"

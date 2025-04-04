@@ -7,16 +7,16 @@ import numpy as np
 
 
 def radial_network_diagram1(central_label = "Writer",
-                            central_color = "#22AAAA",
+                            central_color = "black",
                             central_radius  = 0.045, 
                             labels = ["Edit", "pdfLaTeX", "BibTeX", "make\nindex", "pdfLaTeX"],
-                            colors = ["red", "green", "#2222AA", "yellow", "gray"], # plt.cm.tab10.colors
+                            colors = ["#2f4249", "#3c5870", "#a5565c", "#dec9d0", "#cc884b"], # plt.cm.tab10.colors
                             element_alpha   = 1.0, 
                             element_radius  = 0.045, 
                             proccess_radius = 0.120, 
                             text_fontsize = 28, 
                             text_weight = 'bold', 
-                            text_color = "black", 
+                            text_color = "white", 
                             text_fontfamily = 'monospace', # {FONTNAME, 'serif', 
                                                            # 'sans-serif', 'cursive', 
                                                            # 'fantasy', 'monospace'}

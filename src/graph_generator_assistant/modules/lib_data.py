@@ -12,18 +12,25 @@ data = {
         "bubble-chart": ["bchart1", "bchart2"]
     },
     "distribution": {
-        "histogram": ["hist1", "hist2"],
-        "boxplot": ["boxp1", "boxp2"],
-        "violin": ["viol1", "viol2"]
+        "single-variable": {
+            "histogram": ["histogram1"]
+        },
+        "two-variables": {
+            "scatter-plot": ["scatter1"]
+        },
+        "multiple-variables": {
+            "boxplot": ["boxp1", "boxp2"],
+            "violin": ["viol1", "viol2"]
+        }
     },
     "composition": {
         "piechart": ["piechart1", "piechart2"],
         "stacked-area": ["sarea1", "sarea2"],
         "treemap": ["treemap1", "treemap2"]
     },
-    "relation": {
+    "relationship": {
         "scatter-plot": ["scatter1", "scatter2"],
-        "network-diagram": ["radial_network_diagram1", "radial_network_diagram2", "radial_network_diagram3"],
+        "network-diagram": ["radial_network_diagram1", "radial_network_diagram2", "radial_network_diagram3", "network_graph1", "network_graph2"],
         "matrix-plots": {
             "correlation-matrix": ["corr1", "corr2"],
             "confusion-matrix": ["confusion_matrix1"]
@@ -61,6 +68,7 @@ Rules:
 - Do not remove comments. If needed, add comments but never delete existing ones.
 - Your response must only contain python code with the modified version of "base code". Do not add explanations or markdown formatting.
 - Always ensure the code functions correctly when executing `CUSTOMFUNC(output_filepath="filename.png")`.
+- If the user orders the program to receive data from a PATH or URL, place the address as a default parameter and implement the necessary code within the CUSTOMFUNC function along with safety measures to ensure that default data is loaded if the address cannot be loaded.
 
 Your job will be to make modifications to the following "base code" in Python
 

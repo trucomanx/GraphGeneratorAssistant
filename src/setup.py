@@ -34,7 +34,8 @@ setup(
         "PyQt5",
         "deep-consultation",
         "matplotlib",
-        "networkx"
+        "networkx",
+        "numpy"
     ],
     entry_points={
         'console_scripts': [
