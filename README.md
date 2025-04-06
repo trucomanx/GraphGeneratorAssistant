@@ -2,7 +2,7 @@
 
 Program that assists in generating professional graphs.
 
-![logo](https://raw.githubusercontent.com/trucomanx/GraphGeneratorAssistant/main/src/graph_generator_assistant/icons/logo.png)
+![logo](https://raw.githubusercontent.com/trucomanx/GraphGeneratorAssistant/main/screenshot.png)
 
 ## 1. Installing
 
