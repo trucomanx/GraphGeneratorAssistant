@@ -5,3 +5,5 @@ networkx
 numpy
 scikit-learn
 pillow
+pyautogui
+pynput

@@ -1,6 +1,6 @@
 # graph-generator-assistant
 
-Program that translate text
+Program that assists in generating professional graphs.
 
 ## Testar indicator
 
@@ -12,8 +12,10 @@ python3 -m graph_generator_assistant.indicator
 ## Upload to PYPI
 
 ```bash
+pip install --upgrade pkginfo twine packaging
+
 cd src
-python setup.py sdist bdist_wheel
+python -m build
 twine upload dist/*
 ```
 
@@ -39,7 +41,7 @@ git clone https://github.com/trucomanx/GraphGeneratorAssistant.git
 cd GraphGeneratorAssistant
 pip install -r requirements.txt
 cd src
-python3 setup.py sdist
+python -m build
 pip install dist/graph_generator_assistant-*.tar.gz
 ```
 Using:

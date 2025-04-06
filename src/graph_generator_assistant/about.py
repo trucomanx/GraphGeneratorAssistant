@@ -1,8 +1,8 @@
 # about.py
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __package__ = "graph_generator_assistant"
-__program_name__ = "graph-generator-assistant-program"
+__program_name__ = "graph-generator-assistant"
 __author__ = "Fernando Pujaico Rivera" 
 __email__  = "fernando.pujaico.rivera@gmail.com"
 __description__ = "Program that assists in generating professional graphs."

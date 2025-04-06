@@ -1,6 +1,6 @@
 # graph-generator-assistant
 
-Program that translate text.
+Program that assists in generating professional graphs.
 
 ![logo](https://raw.githubusercontent.com/trucomanx/GraphGeneratorAssistant/main/src/graph_generator_assistant/icons/logo.png)
 
@@ -13,14 +13,14 @@ To install the package from `PyPI`, follow the instructions below:
 pip install --upgrade graph-generator-assistant
 ```
 
-Execute `which graph-generator-assistant-program` to see where it was installed, probably in `/home/USERNAME/.local/bin/graph-generator-assistant-program`.
+Execute `which graph-generator-assistant` to see where it was installed, probably in `/home/USERNAME/.local/bin/graph-generator-assistant`.
 
 ### Using
 
-If the program was not added to the Linux start session, then to start, use the command below:
+To start, use the command below:
 
 ```bash
-graph-generator-assistant-program
+graph-generator-assistant
 ```
 
 ## 2. Buy me a coffee

@@ -12,13 +12,14 @@ from PyQt5.QtWidgets import (
     QWidget, QGridLayout, QLabel, QHBoxLayout, QVBoxLayout, QTextEdit, QPushButton, QScrollArea, QProgressBar, QStatusBar, QSizePolicy, 
     QSplitter, QTextBrowser, QFileDialog
 )
-from PyQt5.QtCore import Qt, QTimer, QUrl
+from PyQt5.QtCore import Qt, QTimer, QUrl, QThread
 from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices
 
 from graph_generator_assistant.modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
 from graph_generator_assistant.modules.lib_execute import generate_data, save_data
 from graph_generator_assistant.modules.lib_files   import open_from_filepath
 from graph_generator_assistant.modules.lib_funcs   import consultation_in_depth, extrair_codigo_puro
+from graph_generator_assistant.modules.lib_about   import show_about_window
 import graph_generator_assistant.about as about
 
 program_dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -29,6 +30,22 @@ CONFIG_FILE = "~/.config/graph_generator_assistant/config_data.json"
 config_data = SYSTEM_DATA
 config_file_path = os.path.expanduser(CONFIG_FILE)
 
+
+class WorkerThread(QThread):
+    def __init__(self, module_name, config_data, sys_msg, user_msg):
+        super().__init__()  # Chama o construtor da classe pai (QThread)
+        self.module_name = module_name
+        self.config_data = config_data 
+        self.sys_msg = sys_msg
+        self.user_msg = user_msg
+        self.out = ""
+        
+    def run(self):
+        self.out = consultation_in_depth(self.config_data, 
+                                    self.sys_msg, 
+                                    self.user_msg)
+
+
 class MainWindow(QMainWindow):
     #############################
     def __init__(self):
@@ -36,6 +53,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle(about.__program_name__)
         self.setGeometry(100, 100, 800, 600)
+        
+        self.rodando = False
+        self.contador = 0
         
         ## Icon
         # Get base directory for icons
@@ -50,7 +70,7 @@ class MainWindow(QMainWindow):
         
         about_action = QAction("About", self)
         about_action.setIcon(QIcon.fromTheme("help-about"))
-        about_action.triggered.connect(lambda: print("about"))
+        about_action.triggered.connect(self.show_about)
         self.toolbar.addAction(about_action)
         
         coffee_action = QAction("Coffee", self)
@@ -104,7 +124,25 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         
         self.load_config_data_from_json()
+
+    #############################
+    def show_about(self):     
+        data = {
+            "version": about.__version__,
+            "package": about.__package__,
+            "program_name": about.__program_name__,
+            "author": about.__author__,
+            "email": about.__email__,
+            "description": about.__description__,
+            "url_source": about.__url_source__,
+            "url_funding": about.__url_funding__,
+            "url_bugs": about.__url_bugs__
+        }
         
+        logo_path = os.path.join(self.base_dir_path, 'icons', 'logo.png')
+        
+        show_about_window(data,logo_path)
+           
     #############################
     def open_url_webpal(self):
         self.status_bar.showMessage("Opening Pinterest")
@@ -308,19 +346,45 @@ class MainWindow(QMainWindow):
             user_msg = self.text_edit.toPlainText()
             
             print("please wait...")
-            out = consultation_in_depth(config_data,sys_msg,user_msg)
-            res = save_data(module_name, out)
+            #if self.rodando:
+            #    return
             
-            #open_from_filepath(res[0])
-            #open_from_filepath(res[1])
+            self.thread = WorkerThread(module_name,config_data, sys_msg, user_msg)
+            self.thread.finished.connect(self.funcao_finalizou)
+            self.thread.start()
             
-            WORKING["mod_path"] = res[0]
-            WORKING["img_path"] = res[1]
-            self.set_image_in_detais_tab( res[1])
-            
+            self.rodando = True
+            self.startTimer(500)  # Atualiza a cada 500ms
+
+    #############################
+    def funcao_finalizou(self):
+        res = save_data(self.thread.module_name, self.thread.out)
+        
+        #open_from_filepath(res[0])
+        #open_from_filepath(res[1])
+        
+        WORKING["mod_path"] = res[0]
+        WORKING["img_path"] = res[1]
+        self.set_image_in_detais_tab( res[1])
+        
         self.consult_btn.setEnabled(True)
+        self.rodando = False
+        self.contador = 0
+        self.progress_bar.setValue(0)
         QMessageBox.information(self, "Information","Finished work")
+    
+    #############################
+    def timerEvent(self, event):
+        if self.rodando:
+            pontos = '.' * (self.contador % 32)
+            self.status_bar.showMessage(f"Working{pontos}",1000)
+
+            if self.contador%2 == 0:
+                self.progress_bar.setValue(self.progress_bar.maximum())
+            else:
+                self.progress_bar.setValue(0)
             
+            self.contador += 1    
     #############################
     def create_details_tabs(self):
         """
