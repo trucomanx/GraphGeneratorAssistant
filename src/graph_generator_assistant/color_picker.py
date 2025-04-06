@@ -50,7 +50,7 @@ class ColorPicker(QWidget):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.label = QLabel("Click 'Start'")
+        self.label = QLabel("Click 'Start' button")
         self.label.setTextInteractionFlags(Qt.TextSelectableByMouse)
         self.label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.label.setAlignment(Qt.AlignCenter)
@@ -60,12 +60,15 @@ class ColorPicker(QWidget):
         
         flo = QFormLayout()
         self.html_text = QLineEdit("")
+        self.html_text.setReadOnly(True)
         flo.addRow("Hex:", self.html_text)
         self.rgb_text = QLineEdit("")
+        self.rgb_text.setReadOnly(True)
         flo.addRow("RGB:", self.rgb_text)
         layout.addLayout(flo)
 
-        self.button = QPushButton("Start color detection")
+        self.button = QPushButton("Start")
+        self.button.setToolTip("Start color detection") 
         self.button.clicked.connect(self.start_color_detection)
         layout.addWidget(self.button)
 

@@ -5,9 +5,10 @@ import sys
 import os
 import json
 import shutil
+import subprocess
 
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QToolBar, QAction, QTreeWidget, QTreeWidgetItem, QTabWidget, 
+    QApplication, QMainWindow, QToolBar, QAction, QTreeWidget, QTreeWidgetItem, QTabWidget, QMessageBox, 
     QWidget, QGridLayout, QLabel, QHBoxLayout, QVBoxLayout, QTextEdit, QPushButton, QScrollArea, QProgressBar, QStatusBar, QSizePolicy, 
     QSplitter, QTextBrowser, QFileDialog
 )
@@ -38,8 +39,8 @@ class MainWindow(QMainWindow):
         
         ## Icon
         # Get base directory for icons
-        base_dir_path = os.path.dirname(os.path.abspath(__file__))
-        icon_path = os.path.join(base_dir_path, 'icons', 'logo.png')
+        self.base_dir_path = os.path.dirname(os.path.abspath(__file__))
+        icon_path = os.path.join(self.base_dir_path, 'icons', 'logo.png')
         self.setWindowIcon(QIcon(icon_path)) 
         
         ## toolbar
@@ -66,6 +67,12 @@ class MainWindow(QMainWindow):
         webpal_action.setIcon(QIcon.fromTheme("emblem-web"))
         webpal_action.triggered.connect(self.open_url_webpal)
         self.toolbar.addAction(webpal_action)
+        
+        colpick_action = QAction("Color picker", self)
+        colpick_path = os.path.join(self.base_dir_path, 'icons', 'color_picker.png')
+        colpick_action.setIcon(QIcon(colpick_path))
+        colpick_action.triggered.connect(self.open_color_picker)
+        self.toolbar.addAction(colpick_action)
         
         ## treeview
         self.tree = QTreeWidget()
@@ -98,11 +105,14 @@ class MainWindow(QMainWindow):
         
         self.load_config_data_from_json()
         
-
+    #############################
     def open_url_webpal(self):
         self.status_bar.showMessage("Opening Pinterest")
         QDesktopServices.openUrl(QUrl("https://pinterest.com/search/pins/?q=color palette design colour schemes"))
-    
+
+    #############################
+    def open_color_picker(self):    
+        subprocess.Popen([sys.executable, os.path.join(self.base_dir_path,"color_picker.py")])
     #############################
     def load_config_data_from_json(self):
         global config_data
@@ -303,6 +313,8 @@ class MainWindow(QMainWindow):
             WORKING["mod_path"] = res[0]
             WORKING["img_path"] = res[1]
             self.set_image_in_detais_tab( res[1])
+            
+        QMessageBox.information(self, "Information","Finished work")
             
     #############################
     def create_details_tabs(self):

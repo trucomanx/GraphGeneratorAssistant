@@ -16,7 +16,7 @@ data = {
             "histogram": ["histogram1"]
         },
         "two-variables": {
-            "scatter-plot": ["scatter1"]
+            "scatter-plot": ["scatter2d_plot1"]
         },
         "multiple-variables": {
             "boxplot": ["boxp1", "boxp2"],
@@ -26,10 +26,11 @@ data = {
     "composition": {
         "piechart": ["piechart1", "piechart2"],
         "stacked-area": ["sarea1", "sarea2"],
-        "treemap": ["treemap1", "treemap2"]
+        "tree-map": ["tree_map1"]
     },
     "relationship": {
         "scatter-plot": ["scatter1", "scatter2"],
+        "tree-diagram": ["tree_files1"],
         "network-diagram": ["radial_network_diagram1", "radial_network_diagram2", "radial_network_diagram3", "network_graph1", "network_graph2"],
         "matrix-plots": {
             "correlation-matrix": ["corr1", "corr2"],
