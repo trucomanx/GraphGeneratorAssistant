@@ -288,8 +288,12 @@ class MainWindow(QMainWindow):
                 out_path = os.path.join(directory,basename)
                 
                 shutil.copy(WORKING["mod_path"], out_path)
+                
     def on_consult_btn_click(self):
         global WORKING
+        
+        self.consult_btn.setEnabled(False)
+        
         if config_data["api_key"]=="":
             open_from_filepath(config_file_path)
         else:
@@ -314,6 +318,7 @@ class MainWindow(QMainWindow):
             WORKING["img_path"] = res[1]
             self.set_image_in_detais_tab( res[1])
             
+        self.consult_btn.setEnabled(True)
         QMessageBox.information(self, "Information","Finished work")
             
     #############################
