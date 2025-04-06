@@ -7,3 +7,5 @@
 /src/graph_generator_assistant/__pycache__/
 /src/graph_generator_assistant/templates/__pycache__/
 /src/pyproject.toml
+/src/dist
+/src/graph_generator_assistant.egg-info

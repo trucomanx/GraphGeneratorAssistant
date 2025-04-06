@@ -30,7 +30,7 @@ pip install --upgrade graph-generator-assistant
 Using:
 
 ```bash
-graph-generator-assistant-indicator
+graph-generator-assistant
 ```
 
 ## Install from source
@@ -47,7 +47,7 @@ pip install dist/graph_generator_assistant-*.tar.gz
 Using:
 
 ```bash
-graph-generator-assistant-indicator
+graph-generator-assistant
 ```
 
 ## Uninstall
