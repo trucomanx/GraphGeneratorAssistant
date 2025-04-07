@@ -6,18 +6,20 @@ import tempfile
 #temp_dir = tempfile.gettempdir()
 
 
-def generate_data(  mod_path, # input Path of module
+def generate_data(  parent,
+                    mod_path, # input Path of module
                     img_path  # output image path
                     ):
     module_src_dir  = os.path.dirname(mod_path)    
     module_name     = os.path.splitext(os.path.basename(mod_path))[0]
     
-    execute_function_from_string(   module_name, 
+    execute_function_from_string(   parent,
+                                    module_name, 
                                     module_src_dir, 
                                     img_path)
 
 
-def execute_function_from_string(module_name, base_path, output_filepath):
+def execute_function_from_string(parent, module_name, base_path, output_filepath):
     module_path = os.path.join(base_path, f"{module_name}.py")
 
     # Carrega o módulo dinamicamente
@@ -30,7 +32,7 @@ def execute_function_from_string(module_name, base_path, output_filepath):
     func(output_filepath=output_filepath)
 
 
-def save_data(mod_name, mod_str):
+def save_data(parent,mod_name, mod_str):
     temp_dir = tempfile.gettempdir()
     mod_path = os.path.join(temp_dir, mod_name + ".py")
     img_path = os.path.join(temp_dir, mod_name + ".png")
@@ -38,12 +40,12 @@ def save_data(mod_name, mod_str):
     with open(mod_path, "w", encoding="utf-8") as arquivo:
         arquivo.write(mod_str)
 
-    generate_data(mod_path, img_path)
+    generate_data(parent,mod_path, img_path)
 
     return mod_path, img_path
     
 if __name__ == '__main__':
     # Exemplo de uso
-    generate_data("../templates/workflow_diagram1.py","salida.pdf")
-    #execute_function_from_string("workflow_diagram1", "../templates","salida.pdf")
+    generate_data(None,"../templates/workflow_diagram1.py","salida.pdf")
+    #execute_function_from_string(None,"workflow_diagram1", "../templates","salida.pdf")
 

@@ -9,11 +9,11 @@ import subprocess
 
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QToolBar, QAction, QTreeWidget, QTreeWidgetItem, QTabWidget, QMessageBox, 
-    QWidget, QGridLayout, QLabel, QHBoxLayout, QVBoxLayout, QTextEdit, QPushButton, QScrollArea, QProgressBar, QStatusBar, QSizePolicy, 
+    QWidget, QGridLayout, QLabel, QHBoxLayout, QVBoxLayout, QTextEdit, QPushButton, QScrollArea, QProgressBar, QStatusBar, QSizePolicy, QPlainTextEdit, 
     QSplitter, QTextBrowser, QFileDialog
 )
 from PyQt5.QtCore import Qt, QTimer, QUrl, QThread
-from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices
+from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices, QTextOption, QFont
 
 from graph_generator_assistant.modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
 from graph_generator_assistant.modules.lib_execute import generate_data, save_data
@@ -312,7 +312,7 @@ class MainWindow(QMainWindow):
             print(extension)
             if extension.lower() in [   ".png", ".jpg", ".jpeg", 
                                         ".eps", ".pdf", ".svg", ".ps"]:
-                generate_data(WORKING["mod_path"], file_path)
+                generate_data(self,WORKING["mod_path"], file_path)
 
     #############################    
     def on_download_code_click(self):
@@ -358,7 +358,7 @@ class MainWindow(QMainWindow):
 
     #############################
     def funcao_finalizou(self):
-        res = save_data(self.thread.module_name, self.thread.out)
+        res = save_data(self,self.thread.module_name, self.thread.out)
         
         #open_from_filepath(res[0])
         #open_from_filepath(res[1])
@@ -426,7 +426,7 @@ class MainWindow(QMainWindow):
         #
 
         self.text_edit = QTextEdit()
-        self.text_edit.setPlaceholderText("Details...")
+        self.text_edit.setPlaceholderText("Write your order for the AI assistant...")
         
         self.consult_btn = QPushButton("Consult")
         self.consult_btn.setIcon(QIcon.fromTheme("applications-internet"))
@@ -465,8 +465,33 @@ class MainWindow(QMainWindow):
         ##############################################
         # 6. Área de botões (button_layout)
         ##############################################
+        output_layout = QHBoxLayout()
+        self.text_output = QPlainTextEdit()
+        self.text_output.setReadOnly(True)  # Somente leitura
+        self.text_output.setWordWrapMode(QTextOption.NoWrap)  # Sem quebra de linha
+        self.text_output.setUndoRedoEnabled(False)  # Desabilitar undo/redo
+        self.text_output.setStyleSheet("""
+            QPlainTextEdit {
+                background-color: black;
+                color: white;
+            }
+        """)
+        self.text_output.setSizePolicy(
+            QSizePolicy.Expanding,  # Horizontal - pode crescer se necessário
+            QSizePolicy.Fixed   # Vertical - pode crescer se necessário
+        )
+        self.text_output.setMinimumSize(0, 0)
+        font = QFont()
+        font.setFamily("Courier New")  # Ou "Monospace", "Consolas", etc.
+        font.setFixedPitch(True)
+        font.setPointSize(10)
+        self.text_output.setFont(font)
+        output_layout.addWidget(self.text_output)
+        
         button_layout = QVBoxLayout()
         #button_layout.setSpacing(8)
+        output_label = QLabel("<b>: Output</b>")
+
 
         self.download_img_btn = QPushButton("Download Image")
         self.download_img_btn.clicked.connect(self.on_download_img_click)
@@ -477,16 +502,26 @@ class MainWindow(QMainWindow):
         self.download_code_btn.setIcon(QIcon.fromTheme("document-save"))
         
 
+        button_layout.addWidget(output_label)
         button_layout.addWidget(self.download_img_btn)
         button_layout.addWidget(self.download_code_btn)
         
-        detail_layout.addLayout(button_layout)
+        button_height = sum([
+            output_label.sizeHint().height(),
+            self.download_img_btn.sizeHint().height(),
+            self.download_code_btn.sizeHint().height(),
+            5 * 2  # Margem para spacing (5px entre cada elemento)
+        ])
+        self.text_output.setFixedHeight(button_height)  # Altura FIXA em pixels
+        
+        output_layout.addLayout(button_layout)
+        detail_layout.addLayout(output_layout)
 
         ##############################################
         # 7. Finalização
         ##############################################
         self.detail_tab.setLayout(detail_layout)
-        self.tabs.addTab(self.detail_tab, "Details")
+        self.tabs.addTab(self.detail_tab, "Task")
     
     
 def main():
