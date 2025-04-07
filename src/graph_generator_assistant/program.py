@@ -492,6 +492,7 @@ class MainWindow(QMainWindow):
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     app = QApplication(sys.argv)
+    app.setApplicationName("graph_generator_assistant") # xprop WM_CLASS # *.desktop -> StartupWMClass
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
