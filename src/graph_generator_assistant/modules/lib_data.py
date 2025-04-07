@@ -13,7 +13,8 @@ data = {
     },
     "distribution": {
         "single-variable": {
-            "histogram": ["histogram1"]
+            "histogram": ["histogram1"],
+            "shaded-areas": ["shaded_areas1","shaded_areas2"]
         },
         "two-variables": {
             "scatter-plot": ["scatter2d_plot1"]
@@ -24,7 +25,7 @@ data = {
         }
     },
     "composition": {
-        "piechart": ["piechart1", "piechart2"],
+        "piechart": ["piechart1", "piechart2", "piechart3"],
         "stacked-area": ["sarea1", "sarea2"],
         "tree-map": ["tree_map1"]
     },
