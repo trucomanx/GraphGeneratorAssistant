@@ -312,6 +312,7 @@ class MainWindow(QMainWindow):
             print(extension)
             if extension.lower() in [   ".png", ".jpg", ".jpeg", 
                                         ".eps", ".pdf", ".svg", ".ps"]:
+                self.text_output.clear()  # Limpa todo o conteúdo
                 generate_data(self,WORKING["mod_path"], file_path)
 
     #############################    
@@ -345,7 +346,7 @@ class MainWindow(QMainWindow):
             sys_msg  = sys_msg.replace("BASECODE",conteudo)
             user_msg = self.text_edit.toPlainText()
             
-            print("please wait...")
+            #print("please wait...")
             #if self.rodando:
             #    return
             
@@ -492,6 +493,9 @@ class MainWindow(QMainWindow):
         #button_layout.setSpacing(8)
         output_label = QLabel("<b>: Output</b>")
 
+        self.refresh_img_btn = QPushButton("Refresh Image")
+        self.refresh_img_btn.clicked.connect(self.on_refresh_img_click)
+        self.refresh_img_btn.setIcon(QIcon.fromTheme("view-refresh"))
 
         self.download_img_btn = QPushButton("Download Image")
         self.download_img_btn.clicked.connect(self.on_download_img_click)
@@ -503,11 +507,13 @@ class MainWindow(QMainWindow):
         
 
         button_layout.addWidget(output_label)
+        button_layout.addWidget(self.refresh_img_btn)
         button_layout.addWidget(self.download_img_btn)
         button_layout.addWidget(self.download_code_btn)
         
         button_height = sum([
             output_label.sizeHint().height(),
+            self.refresh_img_btn.sizeHint().height(),
             self.download_img_btn.sizeHint().height(),
             self.download_code_btn.sizeHint().height(),
             5 * 2  # Margem para spacing (5px entre cada elemento)
@@ -523,6 +529,11 @@ class MainWindow(QMainWindow):
         self.detail_tab.setLayout(detail_layout)
         self.tabs.addTab(self.detail_tab, "Task")
     
+    def on_refresh_img_click(self):
+        if WORKING["mod_path"]!="" and WORKING["img_path"]!="":
+            self.text_output.clear()  # Limpa todo o conteúdo
+            generate_data(self,WORKING["mod_path"], WORKING["img_path"])
+            self.set_image_in_detais_tab(WORKING["img_path"])
     
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)

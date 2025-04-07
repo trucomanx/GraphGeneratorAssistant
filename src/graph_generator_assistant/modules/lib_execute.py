@@ -3,7 +3,39 @@
 import importlib.util
 import os
 import tempfile
-#temp_dir = tempfile.gettempdir()
+
+import sys
+import io
+from contextlib import redirect_stdout
+
+def execute_function_from_string(parent, module_name, base_path, output_filepath):
+    module_path = os.path.join(base_path, f"{module_name}.py")
+    
+    # Cria um buffer para capturar a saída
+    output_buffer = io.StringIO()
+    
+    try:
+        # Redireciona stdout para o buffer
+        with redirect_stdout(output_buffer):
+            # Carrega e executa o módulo
+            spec = importlib.util.spec_from_file_location(module_name, module_path)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            
+            # Obtém e executa a função
+            func = getattr(module, module_name)
+            func(output_filepath=output_filepath)
+            
+        # Obtém a saída capturada
+        output_text = output_buffer.getvalue()+"\nEND\n"
+        
+    except Exception as e:
+        output_text = f"Erro na execução: {str(e)}"
+    finally:
+        output_buffer.close()
+    
+    # Atualiza o widget de texto
+    parent.text_output.appendPlainText(output_text)
 
 
 def generate_data(  parent,
@@ -17,19 +49,6 @@ def generate_data(  parent,
                                     module_name, 
                                     module_src_dir, 
                                     img_path)
-
-
-def execute_function_from_string(parent, module_name, base_path, output_filepath):
-    module_path = os.path.join(base_path, f"{module_name}.py")
-
-    # Carrega o módulo dinamicamente
-    spec = importlib.util.spec_from_file_location(module_name, module_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)  # Executa o módulo
-
-    # Obtém a função dinamicamente e executa
-    func = getattr(module, module_name)  # Nome da função igual ao nome do módulo
-    func(output_filepath=output_filepath)
 
 
 def save_data(parent,mod_name, mod_str):
