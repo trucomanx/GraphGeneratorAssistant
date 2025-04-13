@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from sklearn.metrics import ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import numpy as np

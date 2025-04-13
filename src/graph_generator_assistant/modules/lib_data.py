@@ -25,7 +25,7 @@ data = {
         }
     },
     "composition": {
-        "piechart": ["piechart1", "piechart2", "piechart3"],
+        "piechart": ["piechart1", "piechart2", "piechart3", "progress_ring1"],
         "stacked-area": ["sarea1", "sarea2"],
         "tree-map": ["tree_map1"]
     },

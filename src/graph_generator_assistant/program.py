@@ -20,6 +20,7 @@ from graph_generator_assistant.modules.lib_execute import generate_data, save_da
 from graph_generator_assistant.modules.lib_files   import open_from_filepath
 from graph_generator_assistant.modules.lib_funcs   import consultation_in_depth, extrair_codigo_puro
 from graph_generator_assistant.modules.lib_about   import show_about_window
+from graph_generator_assistant.desktop import create_desktop_file, create_desktop_directory, create_desktop_menu
 import graph_generator_assistant.about as about
 
 program_dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -537,6 +538,23 @@ class MainWindow(QMainWindow):
     
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
+    
+    create_desktop_directory()    
+    create_desktop_menu()
+    create_desktop_file('~/.local/share/applications')
+    
+    for n in range(len(sys.argv)):
+        if sys.argv[n] == "--autostart":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file('~/.config/autostart', overwrite=True)
+            return
+        if sys.argv[n] == "--applications":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file('~/.local/share/applications', overwrite=True)
+            return
+    
     app = QApplication(sys.argv)
     app.setApplicationName("graph_generator_assistant") # xprop WM_CLASS # *.desktop -> StartupWMClass
     window = MainWindow()
