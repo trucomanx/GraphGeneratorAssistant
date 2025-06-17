@@ -556,7 +556,7 @@ def main():
             return
     
     app = QApplication(sys.argv)
-    app.setApplicationName("graph_generator_assistant") # xprop WM_CLASS # *.desktop -> StartupWMClass
+    app.setApplicationName(about.__package__) # xprop WM_CLASS # *.desktop -> StartupWMClass
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
