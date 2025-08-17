@@ -51,13 +51,13 @@ dependencies = [
     "numpy",
     "scikit-learn",
     "pillow",
-    "pillow",
     "pyautogui"
 ]
 
 [project.urls]
 "Bug Reports" = "{__url_bugs__}"
 "Funding" = "{__url_funding__}"
+"Documentation" = "{__url_doc__}"
 "Source" = "{__url_source__}"
 
 [project.scripts]
