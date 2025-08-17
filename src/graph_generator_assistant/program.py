@@ -69,21 +69,6 @@ class MainWindow(QMainWindow):
         self.toolbar.setToolButtonStyle(Qt.ToolButtonTextUnderIcon)
         self.addToolBar(self.toolbar)
         
-        about_action = QAction("About", self)
-        about_action.setIcon(QIcon.fromTheme("help-about"))
-        about_action.triggered.connect(self.show_about)
-        self.toolbar.addAction(about_action)
-        
-        coffee_action = QAction("Coffee", self)
-        coffee_action.setIcon(QIcon.fromTheme("emblem-favorite"))
-        coffee_action.triggered.connect(self.buy_me_a_coffee)
-        self.toolbar.addAction(coffee_action)
-        
-        configure_action = QAction("Configure", self)
-        configure_action.setIcon(QIcon.fromTheme("applications-accessories"))
-        configure_action.triggered.connect(lambda: open_from_filepath(config_file_path))
-        self.toolbar.addAction(configure_action)
-        
         webpal_action = QAction("Web palletes", self)
         webpal_action.setIcon(QIcon.fromTheme("emblem-web"))
         webpal_action.triggered.connect(self.open_url_webpal)
@@ -95,6 +80,29 @@ class MainWindow(QMainWindow):
         colpick_action.triggered.connect(self.open_color_picker)
         self.toolbar.addAction(colpick_action)
         
+        # Adicionar o espaçador
+        spacer = QWidget()
+        spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        self.toolbar.addWidget(spacer)
+        
+
+        configure_action = QAction("Configure AI", self)
+        configure_action.setIcon(QIcon.fromTheme("applications-accessories"))
+        configure_action.triggered.connect(lambda: open_from_filepath(config_file_path))
+        self.toolbar.addAction(configure_action)
+        
+        coffee_action = QAction("Coffee", self)
+        coffee_action.setIcon(QIcon.fromTheme("emblem-favorite"))
+        coffee_action.triggered.connect(self.buy_me_a_coffee)
+        self.toolbar.addAction(coffee_action)
+        
+        about_action = QAction("About", self)
+        about_action.setIcon(QIcon.fromTheme("help-about"))
+        about_action.triggered.connect(self.show_about)
+        self.toolbar.addAction(about_action)
+        
+
+
         ## treeview
         self.tree = QTreeWidget()
         self.tree.setHeaderHidden(True)
@@ -136,6 +144,7 @@ class MainWindow(QMainWindow):
             "email": about.__email__,
             "description": about.__description__,
             "url_source": about.__url_source__,
+            "url_doc": about.__url_doc__,
             "url_funding": about.__url_funding__,
             "url_bugs": about.__url_bugs__
         }
