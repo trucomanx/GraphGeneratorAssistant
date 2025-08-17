@@ -6,7 +6,7 @@ Program that assists in generating professional graphs.
 
 ## 1. Installing
 
-To install the package from `PyPI`, follow the instructions below:
+To install the package from [PyPI](https://pypi.org/project/graph_generator_assistant/), follow the instructions below:
 
 
 ```bash

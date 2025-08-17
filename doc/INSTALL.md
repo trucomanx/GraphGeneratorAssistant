@@ -2,22 +2,6 @@
 
 Program that assists in generating professional graphs.
 
-## Testar indicator
-
-```bash
-cd src
-python3 -m graph_generator_assistant.indicator
-```
-
-## Upload to PYPI
-
-```bash
-pip install --upgrade pkginfo twine packaging
-
-cd src
-python -m build
-twine upload dist/*
-```
 
 ## Install from PYPI
 
