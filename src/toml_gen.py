@@ -54,7 +54,8 @@ dependencies = [
     "pillow",
     "pyautogui",
     "pynput",
-    "scipy"
+    "scipy",
+    "squarify"
 ]
 
 [project.urls]

@@ -5,11 +5,11 @@ data = {
         "bar-chart": {
             "vertical": ["vertical_barchart1"],
             "horizontal": ["horizontal_barchart1"],
-            "clustered": ["cbar1", "cbar2"],
-            "stacked": ["ebar1", "ebar2"]
+            "clustered": ["clustered_bar_chart1"],
+            "stacked": ["stacked_bar_chart1"]
         },
-        "radar-diagram": ["rdiag1", "rdiag2"],
-        "bubble-chart": ["bchart1", "bchart2"]
+        "radar-diagram": ["radar_chart1"],
+        "bubble-chart": ["bubble_chart1", "bubble_chart2"]
     },
     "distribution": {
         "single-variable": {
@@ -26,15 +26,15 @@ data = {
     },
     "composition": {
         "piechart": ["piechart1", "piechart2", "piechart3", "progress_ring1"],
-        "stacked-area": ["sarea1", "sarea2"],
-        "tree-map": ["tree_map1"]
+        "stacked-area": ["stacked_area_chart1"],
+        "tree-map": ["treemap_chart1"]
     },
     "relationship": {
-        "scatter-plot": ["scatter1", "scatter2"],
+        "scatter-plot": ["scatter_relationship_plot1"],
         "tree-diagram": ["tree_files1"],
         "network-diagram": ["radial_network_diagram1", "radial_network_diagram2", "radial_network_diagram3", "network_graph1", "network_graph2"],
         "matrix-plots": {
-            "correlation-matrix": ["corr1", "corr2"],
+            "relation-matrix": ["chart_relation_class", "chart_relation_r2"],
             "confusion-matrix": ["confusion_matrix1"]
         }
     },

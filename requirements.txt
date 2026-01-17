@@ -8,3 +8,4 @@ pillow
 pyautogui
 pynput
 scipy
+squarify
