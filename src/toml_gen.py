@@ -17,6 +17,7 @@ from graph_generator_assistant.about import (
     __url_source__,
     __url_funding__,
     __url_bugs__,
+    __url_doc__
 )
 
 # Lê o conteúdo do README.md
@@ -51,7 +52,9 @@ dependencies = [
     "numpy",
     "scikit-learn",
     "pillow",
-    "pyautogui"
+    "pyautogui",
+    "pynput",
+    "scipy"
 ]
 
 [project.urls]

@@ -20,8 +20,8 @@ data = {
             "scatter-plot": ["scatter2d_plot1"]
         },
         "multiple-variables": {
-            "boxplot": ["boxp1", "boxp2"],
-            "violin": ["viol1", "viol2"]
+            "boxplot": ["density_raincloud_boxplot"],
+            "violin": ["density_raincloud_mean_ci", "density_raincloud_mean_std"]
         }
     },
     "composition": {
@@ -41,8 +41,7 @@ data = {
     "process": {
         "cyclic-diagram": ["circular_diagram1"],
         "flowchart": ["workflow_diagram1","workflow_simple1"],
-        "gantt": ["gantt1", "gantt2"],
-        "bpmn": ["bpmn1", "bpmn2"]
+        "gantt": ["gantt_diagram1", "gantt_diagram2"]
     },
     "strategy": {
         "swot": ["swot1", "swot2"],
