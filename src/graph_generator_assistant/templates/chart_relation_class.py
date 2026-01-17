@@ -7,16 +7,15 @@ from collections import OrderedDict
 
 def chart_relation_class(
         data = pd.DataFrame({
-            "feature1":[1,2,3,4,5,6,7,8,9],
-            "feature2":[9,8,7,6,5,4,3,2,1],
-            "feature3":[2,3,2,3,2,3,2,3,2]
+            "feature1":[1,2,3,4,5,6,7,8,9,10,11,12],
+            "feature2":[12,11,10,9,8,7,6,5,4,3,2,1],
+            "feature3":[2,3,2,3,2,3,2,3,2,1,3,2]
         }),
-        labels = ["A","A","A","B","B","B","C","C","C"],
-        palette=None, #palete = ["red","green","blue"]
+        labels = ["A","A","A","A","A","A","B","B","B","B","B","B"],
+        palette=None, #palete = ["red","blue"]
         diag_plot="kde",
         hist_bins=10,
         hist_alpha=0.7,
-        diagonal_color="#4C72B0",
         figsize=(7,7),
         point_size=40,
         point_alpha=0.8,
@@ -54,13 +53,18 @@ def chart_relation_class(
             ax = axes[i,j]
 
             if i == j:
-                # Diagonal: hist/KDE
-                if diag_plot == "hist":
-                    ax.hist(df[features[i]], bins=hist_bins, color=diagonal_color, alpha=hist_alpha)
-                elif diag_plot == "kde":
-                    sns.kdeplot(df[features[i]], ax=ax, fill=True, color=diagonal_color)
+                # Diagonal: hist/KDE por classe
+                for label_val in pd.Series(labels).unique():
+                    mask = (labels == label_val) if isinstance(labels, pd.Series) else [l==label_val for l in labels]
+                    if diag_plot == "hist":
+                        ax.hist(df.loc[mask, features[i]], bins=hist_bins, 
+                                color=palette[label_val], alpha=hist_alpha, label=str(label_val))
+                    elif diag_plot == "kde":
+                        sns.kdeplot(df.loc[mask, features[i]], ax=ax, fill=True, 
+                                    color=palette[label_val], alpha=hist_alpha, label=str(label_val))
                 ax.set_xlabel(features[i])
                 ax.set_ylabel('')
+                ax.legend().set_visible(False)  # opcional, limpa a legenda na diagonal
             elif i > j:
                 # Inferior: scatter colorido por label
                 for label_val in pd.Series(labels).unique():
