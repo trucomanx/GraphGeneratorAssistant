@@ -10,6 +10,8 @@ from PyQt5.QtGui import QColor, QPalette, QIcon
 from PyQt5.QtCore import Qt, QTimer
 from pynput import mouse
 
+from graph_generator_assistant.modules.resources   import resource_path
+
 # Checagem de sistema operacional
 IS_WINDOWS = platform.system() == "Windows"
 IS_LINUX = platform.system() == "Linux"
@@ -43,8 +45,7 @@ class ColorPicker(QWidget):
         
         ## Icon
         # Get base directory for icons
-        base_dir_path = os.path.dirname(os.path.abspath(__file__))
-        icon_path = os.path.join(base_dir_path, 'icons', 'color_picker.png')
+        icon_path = resource_path('icons', 'color_picker.png')
         self.setWindowIcon(QIcon(icon_path)) 
 
         layout = QVBoxLayout()
@@ -129,6 +130,7 @@ class ColorPicker(QWidget):
             self.timer.stop()
             self.running = False
 
+'''
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     app = QApplication(sys.argv)
@@ -139,4 +141,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
 

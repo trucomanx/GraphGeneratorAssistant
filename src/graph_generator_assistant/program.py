@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer, QUrl, QThread
 from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices, QTextOption, QFont
 
+from graph_generator_assistant.color_picker import ColorPicker
 from graph_generator_assistant.modules.resources   import resource_path
 from graph_generator_assistant.modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
 from graph_generator_assistant.modules.lib_execute import generate_data, save_data
@@ -72,7 +73,8 @@ class MainWindow(QMainWindow):
         self.addToolBar(self.toolbar)
         
         webpal_action = QAction("Web palletes", self)
-        webpal_action.setIcon(QIcon.fromTheme("emblem-web"))
+        webpal_path = resource_path('icons', 'web-browser.png')
+        webpal_action.setIcon(QIcon(webpal_path))
         webpal_action.triggered.connect(self.open_url_webpal)
         self.toolbar.addAction(webpal_action)
         
@@ -89,17 +91,20 @@ class MainWindow(QMainWindow):
         
 
         configure_action = QAction("Configure AI", self)
-        configure_action.setIcon(QIcon.fromTheme("applications-accessories"))
+        configure_path = resource_path('icons', 'text-configure.png')
+        configure_action.setIcon(QIcon(configure_path))
         configure_action.triggered.connect(lambda: open_from_filepath(config_file_path))
         self.toolbar.addAction(configure_action)
         
         coffee_action = QAction("Coffee", self)
-        coffee_action.setIcon(QIcon.fromTheme("emblem-favorite"))
+        coffee_path = resource_path('icons', 'emote-love.png')
+        coffee_action.setIcon(QIcon(coffee_path))
         coffee_action.triggered.connect(self.buy_me_a_coffee)
         self.toolbar.addAction(coffee_action)
         
         about_action = QAction("About", self)
-        about_action.setIcon(QIcon.fromTheme("help-about"))
+        about_path = resource_path('icons', 'status_help.png')
+        about_action.setIcon(QIcon(about_path))
         about_action.triggered.connect(self.show_about)
         self.toolbar.addAction(about_action)
         
@@ -162,8 +167,25 @@ class MainWindow(QMainWindow):
 
     #############################
     def open_color_picker(self):
-        py_picker_path = resource_path('color_picker.py')
-        subprocess.Popen([sys.executable, py_picker_path])
+
+        # evita garbage collector destruir janela
+        if not hasattr(self, "_color_picker_windows"):
+            self._color_picker_windows = []
+
+        picker = ColorPicker()
+
+        picker.setAttribute(Qt.WA_DeleteOnClose)
+
+        picker.destroyed.connect(
+            lambda: self._color_picker_windows.remove(picker)
+            if picker in self._color_picker_windows else None
+        )
+
+        self._color_picker_windows.append(picker)
+
+        picker.show()
+
+
     #############################
     def load_config_data_from_json(self):
         global config_data

@@ -73,6 +73,13 @@ jobs:
             --add-data "graph_generator_assistant/images:images" \
             --add-data "graph_generator_assistant/templates:templates" \
             --collect-all PyQt5 \
+            --collect-all matplotlib \
+            --collect-all numpy \
+            --collect-all networkx \
+            --collect-all scikit-learn \
+            --collect-all pillow \
+            --collect-all scipy \
+            --collect-all squarify \
             program_launcher.py
 
       - name: Build (Windows)
@@ -86,6 +93,13 @@ jobs:
             --add-data "graph_generator_assistant/images;images" `
             --add-data "graph_generator_assistant/templates;templates" `
             --collect-all PyQt5 `
+            --collect-all matplotlib `
+            --collect-all numpy `
+            --collect-all networkx `
+            --collect-all scikit-learn `
+            --collect-all pillow `
+            --collect-all scipy `
+            --collect-all squarify `
             program_launcher.py
 
       - name: Upload build artifact
