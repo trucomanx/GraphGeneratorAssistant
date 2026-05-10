@@ -70,6 +70,8 @@ jobs:
           python -m PyInstaller --onefile --windowed \
             --name graph_generator_assistant \
             --add-data "graph_generator_assistant/icons:icons" \
+            --add-data "graph_generator_assistant/images:images" \
+            --add-data "graph_generator_assistant/templates:templates" \
             --collect-all PyQt5 \
             program_launcher.py
 
@@ -81,6 +83,8 @@ jobs:
           python -m PyInstaller --onefile --windowed `
             --name graph_generator_assistant `
             --add-data "graph_generator_assistant/icons;icons" `
+            --add-data "graph_generator_assistant/images;images" `
+            --add-data "graph_generator_assistant/templates;templates" `
             --collect-all PyQt5 `
             program_launcher.py
 

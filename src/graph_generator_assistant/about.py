@@ -1,6 +1,6 @@
 # about.py
 
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 __package__ = "graph_generator_assistant"
 __program_name__ = "graph-generator-assistant"
 __author__ = "Fernando Pujaico Rivera" 

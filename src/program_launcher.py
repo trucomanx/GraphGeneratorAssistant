@@ -16,11 +16,11 @@ pip install -r requirements.txt
 cd src
 
 ## ubuntu ##
-python3 -m PyInstaller --onefile --windowed --name graph_generator_assistant --add-data "graph_generator_assistant/icons:icons" --collect-all PyQt5  program_launcher.py
+python3 -m PyInstaller --onefile --windowed --name graph_generator_assistant --add-data "graph_generator_assistant/images:images" --add-data "graph_generator_assistant/templates:templates" --add-data "graph_generator_assistant/icons:icons" --collect-all PyQt5  program_launcher.py
 
 
 ## windows ##
-python -m PyInstaller --onefile --windowed --name graph_generator_assistant --add-data "graph_generator_assistant/icons;icons" --collect-all PyQt5  program_launcher.py
+python -m PyInstaller --onefile --windowed --name graph_generator_assistant --add-data "graph_generator_assistant/images;images" --add-data "graph_generator_assistant/templates;templates" --add-data "graph_generator_assistant/icons;icons" --collect-all PyQt5  program_launcher.py
 
 '''
 

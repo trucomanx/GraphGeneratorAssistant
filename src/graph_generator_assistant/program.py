@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer, QUrl, QThread
 from PyQt5.QtGui import QPixmap, QIcon, QDesktopServices, QTextOption, QFont
 
+from graph_generator_assistant.modules.resources   import resource_path
 from graph_generator_assistant.modules.lib_data    import data, SYSTEM_DATA, SYSTEM_QUESTION
 from graph_generator_assistant.modules.lib_execute import generate_data, save_data
 from graph_generator_assistant.modules.lib_files   import open_from_filepath
@@ -23,11 +24,13 @@ from graph_generator_assistant.modules.lib_about   import show_about_window
 from graph_generator_assistant.desktop import create_desktop_file, create_desktop_directory, create_desktop_menu
 import graph_generator_assistant.about as about
 
-program_dir_path = os.path.dirname(os.path.abspath(__file__))
-
 WORKING={"img_path":"", "mod_path":"", "data":""}
 
-CONFIG_FILE = "~/.config/graph_generator_assistant/config_data.json"
+CONFIG_FILE = os.path.join( os.path.expanduser("~"),
+                            ".config",
+                            about.__package__,
+                            "config_data.json" )
+
 config_data = SYSTEM_DATA
 config_file_path = os.path.expanduser(CONFIG_FILE)
 
@@ -60,8 +63,7 @@ class MainWindow(QMainWindow):
         
         ## Icon
         # Get base directory for icons
-        self.base_dir_path = os.path.dirname(os.path.abspath(__file__))
-        icon_path = os.path.join(self.base_dir_path, 'icons', 'logo.png')
+        icon_path = resource_path('icons', 'logo.png')
         self.setWindowIcon(QIcon(icon_path)) 
         
         ## toolbar
@@ -75,7 +77,7 @@ class MainWindow(QMainWindow):
         self.toolbar.addAction(webpal_action)
         
         colpick_action = QAction("Color picker", self)
-        colpick_path = os.path.join(self.base_dir_path, 'icons', 'color_picker.png')
+        colpick_path = resource_path('icons', 'color_picker.png')
         colpick_action.setIcon(QIcon(colpick_path))
         colpick_action.triggered.connect(self.open_color_picker)
         self.toolbar.addAction(colpick_action)
@@ -149,7 +151,7 @@ class MainWindow(QMainWindow):
             "url_bugs": about.__url_bugs__
         }
         
-        logo_path = os.path.join(self.base_dir_path, 'icons', 'logo.png')
+        logo_path = resource_path('icons', 'logo.png')
         
         show_about_window(data,logo_path)
            
@@ -159,8 +161,9 @@ class MainWindow(QMainWindow):
         QDesktopServices.openUrl(QUrl("https://pinterest.com/search/pins/?q=color palette design colour schemes"))
 
     #############################
-    def open_color_picker(self):    
-        subprocess.Popen([sys.executable, os.path.join(self.base_dir_path,"color_picker.py")])
+    def open_color_picker(self):
+        py_picker_path = resource_path('color_picker.py')
+        subprocess.Popen([sys.executable, py_picker_path])
     #############################
     def load_config_data_from_json(self):
         global config_data
@@ -202,8 +205,8 @@ class MainWindow(QMainWindow):
         self.collect_leaves(item, leaves)
         
         images = []
-        for val in leaves:
-            png_path = os.path.join(program_dir_path,"templates",val+".png")
+        for val in leaves:          
+            png_path = resource_path('templates',val+'.png')
             if os.path.exists(png_path):
                 images.append(png_path)
                 #print(png_path)
