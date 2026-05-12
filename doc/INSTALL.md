@@ -21,7 +21,7 @@ graph-generator-assistant
 Installing `graph-generator-assistant` program
 
 ```bash
-git clone https://github.com/trucomanx/GraphGeneratorAssistant.git
+git clone https://github.com/trucomanx-desktop/GraphGeneratorAssistant.git
 cd GraphGeneratorAssistant
 pip install -r requirements.txt
 cd src

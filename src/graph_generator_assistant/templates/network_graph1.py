@@ -21,10 +21,10 @@ def load_image(path):
 
 def network_graph1( network_dict = {
                         "icons": {
-                            "router": "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/router.png?raw=true",
-                            "switch": "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/switch.png?raw=true",
-                            "PC":     "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/pc.png?raw=true",
-                            "LT":     "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/laptop.png?raw=true"
+                            "router": "https://github.com/trucomanx-desktop/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/router.png?raw=true",
+                            "switch": "https://github.com/trucomanx-desktop/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/switch.png?raw=true",
+                            "PC":     "https://github.com/trucomanx-desktop/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/pc.png?raw=true",
+                            "LT":     "https://github.com/trucomanx-desktop/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/laptop.png?raw=true"
                         },
                         "nodes": {
                             "router": "router",

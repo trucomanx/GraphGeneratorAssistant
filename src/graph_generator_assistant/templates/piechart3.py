@@ -48,7 +48,7 @@ def piechart3(  # Dados
                 values = [108, 81, 45, 72, 54], 
                 colors = ['#3a3f05', '#87930d', '#ff6647', '#f90b2d', '#5e0f15'], 
                 explode = (0.0, 0.0, 0.0, 0.0, 0.0),  # >0 Nenhum pedaço destacado
-                img_path = "https://github.com/trucomanx/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/pc.png?raw=true",
+                img_path = "https://github.com/trucomanx-desktop/GraphGeneratorAssistant/blob/main/src/graph_generator_assistant/images/pc.png?raw=true",
                 img_width =1.1,
                 pie_edgecolor = 'white', 
                 pie_doughnut = 0.5, 
